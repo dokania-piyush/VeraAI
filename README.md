@@ -41,5 +41,3 @@ In another terminal: `python -m scripts.demo --reset`. This wipes **local test s
 Actual test logs, historical dataset replay, local HTTP load measurements, and the changed-price transcript are in `reports/`. They are **not** official quality scores, engagement measurements or selection predictions. See [TESTING](docs/TESTING.md).
 
 English, Hindi and Hinglish have controlled realization; other languages currently fall back to English, and some detailed follow-through remains English. One process and one replica are supported. No real messaging, booking, payment, campaign publishing or medicine dispensing integrations exist. The bot says so instead of pretending to execute them.
-
-Read [DEPLOYMENT](docs/DEPLOYMENT.md), [SECURITY](docs/SECURITY.md), [RESEARCH](docs/RESEARCH.md) and [LIMITATIONS](docs/LIMITATIONS.md) before submission. Replace metadata placeholders and understand/customize the code before presenting it as your work.
