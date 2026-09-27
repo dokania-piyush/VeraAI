@@ -1,0 +1,104 @@
+{
+  "source_archive_sha256": "f1546a22d854a9d09d3f87a75a81e99c2427fc1f021898a38b7af9470202148f",
+  "files": [
+    {
+      "original": "challenge-brief.md",
+      "path": "vendor/magicpin/challenge-brief.md",
+      "sha256": "2755d8248b7b4fa830a62c5b47822baa914609fc9031c1a04c022dc77faa11e4",
+      "unchanged": true
+    },
+    {
+      "original": "challenge-testing-brief.md",
+      "path": "vendor/magicpin/challenge-testing-brief.md",
+      "sha256": "5b1ff83668c71193f5a8cbb98016fb366618053345724f6507c9a9d788000e0b",
+      "unchanged": true
+    },
+    {
+      "original": "engagement-design.md",
+      "path": "vendor/magicpin/engagement-design.md",
+      "sha256": "920d82122b4e7156abebbb1e1354005b33e2250852b93f739170d9d81a9c876d",
+      "unchanged": true
+    },
+    {
+      "original": "engagement-research.md",
+      "path": "vendor/magicpin/engagement-research.md",
+      "sha256": "d0484e524bd8ef32dd69ada0be0c88ed13ba6c2d87dee3bc7322cbfe8b26c54b",
+      "unchanged": true
+    },
+    {
+      "original": "judge_simulator.py",
+      "path": "vendor/magicpin/judge_simulator.py",
+      "sha256": "1f315329f9d845b364e2daa919c3b2b7049f8a8e864315a822daefb0f772b868",
+      "unchanged": true
+    },
+    {
+      "original": "dataset/customers_seed.json",
+      "path": "vendor/magicpin/dataset/customers_seed.json",
+      "sha256": "aafdc7723d6e82cf5eee3d5f136051efbc8c54408d278bc6e28d6157912ef12e",
+      "unchanged": true
+    },
+    {
+      "original": "dataset/merchants_seed.json",
+      "path": "vendor/magicpin/dataset/merchants_seed.json",
+      "sha256": "1af93506d5060e8a22f5a6261eff1efaae2f056c59d778132e0cc69f837c79af",
+      "unchanged": true
+    },
+    {
+      "original": "dataset/generate_dataset.py",
+      "path": "vendor/magicpin/dataset/generate_dataset.py",
+      "sha256": "828c9e0ad16d1b2c673355d662ffdc1423f9f0f3bb045b5cc3e6b5b4e969883b",
+      "unchanged": true
+    },
+    {
+      "original": "dataset/triggers_seed.json",
+      "path": "vendor/magicpin/dataset/triggers_seed.json",
+      "sha256": "ef8128ba29335d6ef97170855c231c8979a184d796e83e821472867878d2be85",
+      "unchanged": true
+    },
+    {
+      "original": "dataset/categories/dentists.json",
+      "path": "vendor/magicpin/dataset/categories/dentists.json",
+      "sha256": "0c99d768896642e90ec8f2efbbd521dd311df65fc657713efb6961ea2200ff47",
+      "unchanged": true
+    },
+    {
+      "original": "dataset/categories/gyms.json",
+      "path": "vendor/magicpin/dataset/categories/gyms.json",
+      "sha256": "b0feccdb9f1a970d3fdcad1edd1d1adf425226b51e523e07de95e19a562c12b4",
+      "unchanged": true
+    },
+    {
+      "original": "dataset/categories/salons.json",
+      "path": "vendor/magicpin/dataset/categories/salons.json",
+      "sha256": "9be652bc194e8b5ba99fefd60ba24483c9053ad77d0e3b8cd77df2091a8f358c",
+      "unchanged": true
+    },
+    {
+      "original": "dataset/categories/pharmacies.json",
+      "path": "vendor/magicpin/dataset/categories/pharmacies.json",
+      "sha256": "8d0bd575e41f5dbb3c6346e3af25016ba50495b210b0120d36a9f5798bb6cb2f",
+      "unchanged": true
+    },
+    {
+      "original": "dataset/categories/restaurants.json",
+      "path": "vendor/magicpin/dataset/categories/restaurants.json",
+      "sha256": "875e3216046a36aafbdc5c9dcd0020132eb3f3e117122abef2e4981b09b4e563",
+      "unchanged": true
+    },
+    {
+      "original": "examples/api-call-examples.md",
+      "path": "vendor/magicpin/examples/api-call-examples.md",
+      "sha256": "c8153dd0ee7183b82d77cda0e0d6551032b6878c0b9743ec8856abb367b70cb9",
+      "unchanged": true
+    },
+    {
+      "original": "examples/case-studies.md",
+      "path": "vendor/magicpin/examples/case-studies.md",
+      "sha256": "f6ade28a85dd638457d2d95e64fd491879a66f2be7b747d637f74eddc8aef5de",
+      "unchanged": true
+    }
+  ],
+  "original_files_unchanged": 16,
+  "python": "3.13.5",
+  "sqlite_runtime": "3.46.1"
+}

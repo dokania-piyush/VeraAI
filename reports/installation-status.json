@@ -1,0 +1,6 @@
+{
+  "attempt": "fresh virtual environment install using uv pip",
+  "completed": false,
+  "reason": "Package-index requests retried until the execution timeout; no clean install was completed. Tests used preinstalled packages.",
+  "tested_dependency_closure": "requirements-lock.txt"
+}

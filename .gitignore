@@ -1,0 +1,20 @@
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+data/
+expanded/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+*.sqlite3*
+*.db
+*.log
+build/
+dist/
+*.egg-info/
+.DS_Store
+# Inspect new reports before committing; they can contain supplied contexts.

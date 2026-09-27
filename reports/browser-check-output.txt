@@ -1,0 +1,19 @@
+{
+  "browser": "Chromium via Playwright",
+  "transport": "Offline DOM + mocked fetch to real FastAPI TestClient; no browser network navigation",
+  "checks": [
+    "preview current price",
+    "price mutation",
+    "customer reminder",
+    "revoked consent abstains",
+    "operational review reply",
+    "protected trace loading",
+    "mobile no horizontal overflow"
+  ],
+  "javascript_errors": [],
+  "screenshots": [
+    "studio-desktop.png",
+    "studio-mobile.png"
+  ],
+  "limitation": "Direct browser navigation to localhost was blocked by the authoring environment. Local HTTP was tested independently with HTTPX."
+}

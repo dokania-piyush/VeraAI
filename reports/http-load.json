@@ -1,0 +1,21 @@
+{
+  "label": "Local HTTP engineering workload, not a deployment SLA or message-quality score",
+  "requests": 120,
+  "target_requests_per_second": 10.0,
+  "elapsed_seconds": 11.915,
+  "mix": [
+    "health",
+    "context_noop",
+    "tick",
+    "reply"
+  ],
+  "status_counts": {
+    "200": 120
+  },
+  "errors": [],
+  "latency_ms": {
+    "median": 5.117,
+    "p95": 11.339,
+    "max": 19.072
+  }
+}

@@ -1,0 +1,33 @@
+# Optional PAID single-instance service recipe. Review billing and docs/DEPLOYMENT.md.
+# No disk is attached automatically: Render's automatic disk snapshots need a
+# retention-policy decision before you store evaluator data on a persistent disk.
+services:
+  - type: web
+    name: vera-compass
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt -c requirements-lock.txt
+    startCommand: python -m scripts.run --host 0.0.0.0
+    healthCheckPath: /v1/healthz
+    numInstances: 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.5
+      - key: VERA_TEAM_NAME
+        value: Vera Compass
+      - key: VERA_TEAM_MEMBERS
+        sync: false
+      - key: VERA_CONTACT_EMAIL
+        sync: false
+      - key: VERA_ADMIN_TOKEN
+        generateValue: true
+      - key: VERA_SEMANTIC_ENABLED
+        value: "false"
+      - key: VERA_DB_PATH
+        value: ./data/vera.sqlite3
+      - key: VERA_RETENTION_HOURS
+        value: "4"
+# This default has ephemeral storage: restarts/redeploys erase session state.
+# Attach /var/data and change VERA_DB_PATH to /var/data/vera.sqlite3 only after
+# resolving snapshots/retention. Otherwise use a single VM/container host whose
+# storage/backups you control. Do not redeploy during a judging run.

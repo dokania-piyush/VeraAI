@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vera Compass · Decision Studio</title><link rel="stylesheet" href="/assets/styles.css"><script src="/assets/app.js" defer></script></head>
+<body>
+<header><a class="brand" href="/studio"><span class="mark">V</span><span>VERA <b>COMPASS</b></span></a><span class="pill">DECISION STUDIO</span><a class="api-link" href="/docs">API reference ↗</a></header>
+<main>
+<section class="intro"><p class="eyebrow">CONTEXT → JUDGMENT → ACTION</p><h1>Good messages begin<br>with better decisions.</h1><p class="lede">Change a fact. Inspect the next action. See exactly which supplied evidence supports it.</p></section>
+<section class="connection"><label for="token">Admin access</label><input id="token" type="password" autocomplete="off" placeholder="Your VERA_ADMIN_TOKEN — kept in this tab only"><button id="connect">Load recent decisions</button><span id="connection-status" role="status">Local, synthetic preview</span></section>
+<section class="workspace">
+<aside class="panel scenarios"><p class="eyebrow">01 / CHOOSE A CASE</p><h2>Three decisions.<br>No invented facts.</h2><div id="scenarios"></div><div class="aside-note"><strong>Not a delivery interface.</strong><p>These cases are synthetic. Preview does not send messages or overwrite the running bot’s state.</p></div></aside>
+<section class="panel editor"><div class="panel-heading"><div><p class="eyebrow">02 / CHANGE THE CONTEXT</p><h2 id="case-title">Context editor</h2></div><button id="reset" class="text-button">Reset</button></div><div class="mutations"><button id="change-price">Price → ₹599</button><button id="withdraw">Withdraw offer</button><button id="revoke">Revoke consent</button></div><label class="sr-only" for="context">Full context JSON</label><textarea id="context" spellcheck="false"></textarea><button id="preview" class="primary">Evaluate next action <span>↗</span></button><p class="micro">Explicit scenario time. Unchanged source facts. No model call.</p></section>
+<section class="panel output"><p class="eyebrow">03 / INSPECT THE DECISION</p><div class="decision-heading"><h2 id="decision-title">Ready to evaluate</h2><span id="badge" class="badge">PREVIEW</span></div><div id="message" class="message">Choose a case, enter your admin token, then evaluate. You can edit every input in the middle panel.</div><h3>Why this action?</h3><p id="reason">The bot will show its decision rule and supporting input facts—not private model reasoning.</p><h3>After the recipient agrees</h3><p id="pending">The stored next action appears here.</p><details open><summary>Evidence ledger <span id="evidence-count">0 facts</span></summary><div id="facts" class="facts"></div></details><p id="error" class="error" role="alert"></p></section>
+</section>
+<section class="panel replay"><div class="panel-heading"><div><p class="eyebrow">ACTUAL API ACTIVITY</p><h2>Recent decision records</h2></div><button id="refresh">Refresh</button></div><p class="micro">Run <code>python -m scripts.demo --reset</code> against your local test server to exercise real state transitions. The reset flag erases its test state.</p><div id="traces">No records loaded. Admin access is required.</div></section>
+<footer><span>Evidence-backed next actions.</span><span>Source provenance is not independent verification. No booking, payment or campaign execution.</span></footer>
+</main>
+</body></html>

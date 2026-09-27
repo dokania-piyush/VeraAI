@@ -1,0 +1,266 @@
+{
+  "synthetic": true,
+  "events": [
+    {
+      "endpoint": "/v1/teardown",
+      "request": null,
+      "response": {
+        "wiped": true
+      }
+    },
+    {
+      "endpoint": "/v1/context",
+      "request": {
+        "scope": "category",
+        "context_id": "salons",
+        "version": 1,
+        "payload": {
+          "slug": "salons",
+          "voice": {
+            "tone": "warm_practical",
+            "vocab_taboo": [
+              "guaranteed glow"
+            ]
+          },
+          "peer_stats": {
+            "avg_ctr": 0.04
+          },
+          "digest": []
+        },
+        "delivered_at": "2026-09-27T10:00:00Z"
+      },
+      "response": {
+        "accepted": true,
+        "ack_id": "ack_3b34adef403df20962bf90ca",
+        "stored_at": "2026-09-27T13:52:58.145226Z"
+      }
+    },
+    {
+      "endpoint": "/v1/context",
+      "request": {
+        "scope": "merchant",
+        "context_id": "demo_studio",
+        "version": 1,
+        "payload": {
+          "merchant_id": "demo_studio",
+          "category_slug": "salons",
+          "identity": {
+            "name": "Mira Studio",
+            "owner_first_name": "Mira",
+            "languages": [
+              "en"
+            ],
+            "verified": true
+          },
+          "performance": {
+            "window_days": 30,
+            "views": 1500,
+            "calls": 25,
+            "ctr": 0.025,
+            "delta_7d": {
+              "calls_pct": -0.2
+            }
+          },
+          "offers": [
+            {
+              "id": "spa_offer",
+              "title": "Hair Spa @ ₹599",
+              "status": "active",
+              "started": "2026-01-01"
+            }
+          ],
+          "subscription": {
+            "plan": "Pro",
+            "days_remaining": 10
+          }
+        },
+        "delivered_at": "2026-09-27T10:00:00Z"
+      },
+      "response": {
+        "accepted": true,
+        "ack_id": "ack_6ad683d6a937fb639d8f5d30",
+        "stored_at": "2026-09-27T13:52:58.150722Z"
+      }
+    },
+    {
+      "endpoint": "/v1/context",
+      "request": {
+        "scope": "trigger",
+        "context_id": "demo_competitor",
+        "version": 1,
+        "payload": {
+          "id": "demo_after_stop",
+          "scope": "merchant",
+          "kind": "competitor_opened",
+          "merchant_id": "demo_studio",
+          "customer_id": null,
+          "payload": {
+            "competitor_name": "Nearby Example Salon",
+            "distance_km": 1.3,
+            "their_offer": "Hair Spa @ ₹399"
+          },
+          "urgency": 2,
+          "suppression_key": "demo:new-after-stop",
+          "expires_at": "2026-12-01T00:00:00Z"
+        },
+        "delivered_at": "2026-09-27T10:00:00Z"
+      },
+      "response": {
+        "accepted": true,
+        "ack_id": "ack_bcd35c227bec562fb35ca249",
+        "stored_at": "2026-09-27T13:52:58.154630Z"
+      }
+    },
+    {
+      "endpoint": "/v1/tick",
+      "request": {
+        "now": "2026-09-27T10:00:00Z",
+        "available_triggers": [
+          "demo_competitor"
+        ]
+      },
+      "response": {
+        "actions": [
+          {
+            "conversation_id": "conv_59f829b777a644fbda23efdf2a94",
+            "merchant_id": "demo_studio",
+            "customer_id": null,
+            "send_as": "vera",
+            "trigger_id": "demo_competitor",
+            "template_name": "compass_growth_v1",
+            "template_params": [
+              "Mira, the supplied update lists Nearby Example Salon 1.3 km away. Their offer—not yours—is Hair Spa @ ₹399. Your approved option is Hair Spa @ ₹499; no need to assume a price match.",
+              "Want a ready-to-use draft built around it?"
+            ],
+            "body": "Mira, the supplied update lists Nearby Example Salon 1.3 km away. Their offer—not yours—is Hair Spa @ ₹399. Your approved option is Hair Spa @ ₹499; no need to assume a price match. Want a ready-to-use draft built around it?",
+            "cta": "open_ended",
+            "suppression_key": "demo:compete:1",
+            "rationale": "Competitor price remains attributed to competitor; no claim of superior treatment/outcomes. Context versions: {\"category\":1,\"merchant\":1,\"trigger\":1}."
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "/v1/context",
+      "request": {
+        "scope": "merchant",
+        "context_id": "demo_studio",
+        "version": 2,
+        "payload": {
+          "merchant_id": "demo_studio",
+          "category_slug": "salons",
+          "identity": {
+            "name": "Mira Studio",
+            "owner_first_name": "Mira",
+            "languages": [
+              "en"
+            ],
+            "verified": true
+          },
+          "performance": {
+            "window_days": 30,
+            "views": 1500,
+            "calls": 25,
+            "ctr": 0.025,
+            "delta_7d": {
+              "calls_pct": -0.2
+            }
+          },
+          "offers": [
+            {
+              "id": "spa_offer",
+              "title": "Hair Spa @ ₹599",
+              "status": "active",
+              "started": "2026-01-01"
+            }
+          ],
+          "subscription": {
+            "plan": "Pro",
+            "days_remaining": 10
+          }
+        },
+        "delivered_at": "2026-09-27T10:00:00Z"
+      },
+      "response": {
+        "accepted": true,
+        "ack_id": "ack_9480228d14cfc1622475cfb0",
+        "stored_at": "2026-09-27T13:52:58.169534Z"
+      }
+    },
+    {
+      "endpoint": "/v1/reply",
+      "request": {
+        "conversation_id": "conv_59f829b777a644fbda23efdf2a94",
+        "merchant_id": "demo_studio",
+        "customer_id": null,
+        "from_role": "merchant",
+        "message": "Yes, send me the draft",
+        "received_at": "2026-09-27T10:07:00Z",
+        "turn_number": 2
+      },
+      "response": {
+        "action": "send",
+        "body": "Here is your draft: “Mira Studio: Hair Spa @ ₹599. Contact our team to check eligibility and availability.” Nothing has been published or sent.",
+        "cta": "none",
+        "rationale": "Deliver the pending next action immediately using latest facts; no re-qualification."
+      }
+    },
+    {
+      "endpoint": "/v1/reply",
+      "request": {
+        "conversation_id": "conv_59f829b777a644fbda23efdf2a94",
+        "merchant_id": "demo_studio",
+        "customer_id": null,
+        "from_role": "merchant",
+        "message": "Stop messaging me",
+        "received_at": "2026-09-27T10:08:00Z",
+        "turn_number": 3
+      },
+      "response": {
+        "action": "end",
+        "rationale": "Opt-out persisted for this recipient; future proactive outreach is blocked."
+      }
+    },
+    {
+      "endpoint": "/v1/context",
+      "request": {
+        "scope": "trigger",
+        "context_id": "demo_after_stop",
+        "version": 1,
+        "payload": {
+          "id": "demo_after_stop",
+          "scope": "merchant",
+          "kind": "competitor_opened",
+          "merchant_id": "demo_studio",
+          "customer_id": null,
+          "payload": {
+            "competitor_name": "Nearby Example Salon",
+            "distance_km": 1.3,
+            "their_offer": "Hair Spa @ ₹399"
+          },
+          "urgency": 2,
+          "suppression_key": "demo:new-after-stop",
+          "expires_at": "2026-12-01T00:00:00Z"
+        },
+        "delivered_at": "2026-09-27T10:00:00Z"
+      },
+      "response": {
+        "accepted": true,
+        "ack_id": "ack_b6db048532edf69048384f3b",
+        "stored_at": "2026-09-27T13:52:58.188041Z"
+      }
+    },
+    {
+      "endpoint": "/v1/tick",
+      "request": {
+        "now": "2026-09-27T12:00:00Z",
+        "available_triggers": [
+          "demo_after_stop"
+        ]
+      },
+      "response": {
+        "actions": []
+      }
+    }
+  ]
+}

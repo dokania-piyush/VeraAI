@@ -1,0 +1,5 @@
+Reading seeds from /mnt/data/vera-compass/vendor/magicpin/dataset
+Writing to /mnt/data/vera-expanded
+  Loaded 5 categories, 10 merchant seeds, 15 customer seeds, 25 trigger seeds
+  Expanded to 50 merchants, 200 customers, 100 triggers
+Done. Run: ls /mnt/data/vera-expanded

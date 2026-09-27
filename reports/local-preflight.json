@@ -1,0 +1,36 @@
+{
+  "checks": [
+    {
+      "path": "/v1/healthz",
+      "ok": true,
+      "latency_ms": 2.98,
+      "body": {
+        "status": "ok",
+        "contexts_loaded": {
+          "category": 1,
+          "merchant": 1,
+          "customer": 0,
+          "trigger": 2
+        },
+        "uptime_seconds": 2
+      }
+    },
+    {
+      "path": "/v1/metadata",
+      "ok": true,
+      "latency_ms": 2.01,
+      "body": {
+        "team_name": "Vera Compass",
+        "team_members": [
+          "SET_YOUR_NAME"
+        ],
+        "model": "deterministic fact compiler (no LLM calls)",
+        "approach": "Evidence-backed next actions; independent consent/cadence policy; persistent pending actions and replay traces.",
+        "contact_email": "SET_YOUR_EMAIL",
+        "version": "1.0.0",
+        "submitted_at": "2026-09-27T00:00:00Z"
+      }
+    }
+  ],
+  "note": "Read-only preflight does not replace behavioral tests or confirm hidden judge quality."
+}

@@ -1,0 +1,5753 @@
+{
+  "label": "Engineering replay of supplied fixtures; no quality score or real-world outcome measured.",
+  "python": "3.13.2",
+  "clock_mode": "explicit per-case historical simulation; source fixtures unchanged",
+  "counts": {
+    "category": 5,
+    "merchant": 50,
+    "customer": 200,
+    "trigger": 100
+  },
+  "kinds": 26,
+  "decisions": {
+    "send": 74,
+    "skip": 26
+  },
+  "skip_reasons": {
+    "insufficient_safe_evidence": 6,
+    "consent_scope_mismatch": 20
+  },
+  "latency_ms": {
+    "median": 0.11443751282058656,
+    "p95": 0.49700000090524554,
+    "max": 2.227500022854656
+  },
+  "provenance_value_mismatches": 0,
+  "live_llm_calls": 0,
+  "cases": [
+    {
+      "trigger_id": "trg_001_research_digest_dentists",
+      "kind": "research_digest",
+      "merchant_id": "m_001_drmeera_dentist_delhi",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Cited current digest, honest category-average label; no fabricated local demand or patient cohort.",
+      "body": "Dr. Meera, your supplied digest cites JIDA Oct 2026, p.14: “3-month fluoride varnish recall outperforms 6-month for high-risk adult caries”. Your click-through rate is 2.1%; the supplied category average is 3%. Want the supplied summary and its limitations?",
+      "pending": {
+        "kind": "research_summary",
+        "digest_path": "category.digest.0",
+        "digest_id": "d_2026W17_jida_fluoride",
+        "sensitive": true
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "digest.0.source",
+            "value": "JIDA Oct 2026, p.14",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "digest.0.title",
+            "value": "3-month fluoride varnish recall outperforms 6-month for high-risk adult caries",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "peer_stats.avg_ctr",
+            "value": 0.03,
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Dr. Meera's Dental Clinic",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Meera",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.ctr",
+            "value": 0.021,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "research_digest",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 2.2275
+    },
+    {
+      "trigger_id": "trg_002_compliance_dci_radiograph",
+      "kind": "regulation_change",
+      "merchant_id": "m_001_drmeera_dentist_delhi",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Attributes the supplied notice rather than claiming independently verified legal/clinical guidance.",
+      "body": "Dr. Meera, your supplied digest cites Dental Council of India circular 2026-11-04: “DCI revised radiograph dose limits effective 2026-12-15”. The supplied deadline is Tue, 15 Dec 2026; verify the notice before changing practice. Want a short verification checklist?",
+      "pending": {
+        "kind": "checklist",
+        "digest_path": "category.digest.1",
+        "digest_id": "d_2026W17_dci_radiograph",
+        "sensitive": true
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "digest.1.source",
+            "value": "Dental Council of India circular 2026-11-04",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "digest.1.title",
+            "value": "DCI revised radiograph dose limits effective 2026-12-15",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Dr. Meera's Dental Clinic",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Meera",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "regulation_change",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.deadline_iso",
+            "value": "2026-12-15",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.564
+    },
+    {
+      "trigger_id": "trg_003_recall_due_priya",
+      "kind": "recall_due",
+      "merchant_id": "m_001_drmeera_dentist_delhi",
+      "customer_id": "c_001_priya_for_m001",
+      "clock": "2026-11-04T18:30:00Z",
+      "decision": "send",
+      "reason": "Reminder consent only; no promotion or medical recommendation added.",
+      "body": "Priya, Dr. Meera's Dental Clinic ke reminder mein aapka 6 month cleaning Thu, 12 Nov 2026 ko due hai. Listed option: Thu, 5 Nov 2026, 6:00pm IST — booking confirm nahi hai. Appointment enquiry draft ke liye YES, messages band karne ke liye STOP.",
+      "pending": {
+        "kind": "recall_request"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.language_pref",
+            "value": "hi-en mix",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.name",
+            "value": "Priya",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "preferences.channel",
+            "value": "whatsapp",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Dr. Meera's Dental Clinic",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "recall_due",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.available_slots.0.iso",
+            "value": "2026-11-05T18:00:00+05:30",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.available_slots.1.iso",
+            "value": "2026-11-06T17:00:00+05:30",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.due_date",
+            "value": "2026-11-12",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.service_due",
+            "value": "6_month_cleaning",
+            "version": null
+          }
+        ],
+        "calculations": [
+          {
+            "operation": "render_iso_slot_in_Asia/Kolkata_ignore_unreliable_label",
+            "inputs": [
+              "trigger.payload.available_slots.0.iso"
+            ],
+            "result": "Thu, 5 Nov 2026, 6:00pm IST"
+          },
+          {
+            "operation": "render_iso_slot_in_Asia/Kolkata_ignore_unreliable_label",
+            "inputs": [
+              "trigger.payload.available_slots.1.iso"
+            ],
+            "result": "Fri, 6 Nov 2026, 5:00pm IST"
+          }
+        ],
+        "source_values_match": true
+      },
+      "latency_ms": 0.7457
+    },
+    {
+      "trigger_id": "trg_004_perf_dip_bharat",
+      "kind": "perf_dip",
+      "merchant_id": "m_002_bharat_dentist_mumbai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Uses actual signed change; seasonality/likely driver is not asserted as proven causation.",
+      "body": "Dr. Bharat, your calls are down 50% in the 7d. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "mr"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Bharat Dental Care",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Bharat",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "perf_dip",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.delta_pct",
+            "value": -0.5,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.metric",
+            "value": "calls",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.window",
+            "value": "7d",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1406
+    },
+    {
+      "trigger_id": "trg_005_renewal_due_bharat",
+      "kind": "renewal_due",
+      "merchant_id": "m_002_bharat_dentist_mumbai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Reports days as a snapshot rather than silently assuming an as-of date; no payment claim.",
+      "body": "Dr. Bharat, your supplied Pro subscription snapshot has 12 days remaining. The renewal quote supplied is ₹4999; I cannot process payments. Want a draft plan to review?",
+      "pending": {
+        "kind": "renewal_plan"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "mr"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Bharat Dental Care",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Bharat",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "subscription.plan",
+            "value": "Pro",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "renewal_due",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.days_remaining",
+            "value": 12,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.renewal_amount",
+            "value": 4999,
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1945
+    },
+    {
+      "trigger_id": "trg_006_festival_diwali",
+      "kind": "festival_upcoming",
+      "merchant_id": "m_003_studio11_salon_hyderabad",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "insufficient_safe_evidence",
+      "body": null,
+      "pending": null,
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "te"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Studio11 Family Salon",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Lakshmi",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "festival_upcoming",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.date",
+            "value": "2026-10-31",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.festival",
+            "value": "Diwali",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1116
+    },
+    {
+      "trigger_id": "trg_007_bridal_followup_kavya",
+      "kind": "wedding_package_followup",
+      "merchant_id": "m_003_studio11_salon_hyderabad",
+      "customer_id": "c_005_kavya_for_m003",
+      "clock": "2026-10-08T18:30:00Z",
+      "decision": "send",
+      "reason": "Bridal follow-up permission, actual wedding date; no invented package.",
+      "body": "Kavya, your wedding date with Studio11 Family Salon is noted as Sun, 8 Nov 2026. We can draft the next consultation enquiry without assuming a package price or reserved slot. Reply YES for an appointment-enquiry draft, or STOP to opt out.",
+      "pending": {
+        "kind": "recall_request"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.language_pref",
+            "value": "english",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.name",
+            "value": "Kavya",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "preferences.channel",
+            "value": "whatsapp",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Studio11 Family Salon",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "wedding_package_followup",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.trial_completed",
+            "value": "2026-03-22",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.wedding_date",
+            "value": "2026-11-08",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.2344
+    },
+    {
+      "trigger_id": "trg_008_curious_ask_studio11",
+      "kind": "curious_ask_due",
+      "merchant_id": "m_003_studio11_salon_hyderabad",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "One category-specific question; answer becomes a draftable next action, not a fabricated demand claim.",
+      "body": "Lakshmi, your 30-day snapshot shows 4980 profile views and 62 calls. Which service did customers ask about most this week?",
+      "pending": {
+        "kind": "curiosity"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "te"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Studio11 Family Salon",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Lakshmi",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 62,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 4980,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "curious_ask_due",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1383
+    },
+    {
+      "trigger_id": "trg_009_winback_glamour",
+      "kind": "winback_eligible",
+      "merchant_id": "m_004_glamour_salon_pune",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Re-engagement gives concrete account value without causal revenue-loss claims.",
+      "body": "Anjali, your 30-day snapshot shows 1200 profile views and 8 calls. Let's start with a useful listing review, not a subscription pitch. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "mr"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Glamour Lounge Spa & Salon",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Anjali",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 8,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 1200,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "winback_eligible",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1302
+    },
+    {
+      "trigger_id": "trg_010_ipl_match_delhi",
+      "kind": "ipl_match_today",
+      "merchant_id": "m_005_pizzajunction_restaurant_delhi",
+      "customer_id": null,
+      "clock": "2026-04-26T13:00:00Z",
+      "decision": "send",
+      "reason": "Match-specific operations before promotion; no invalid weekday offer or projected order lift.",
+      "body": "Suresh, DC vs MI is listed for Sun, 26 Apr 2026, 7:30pm IST. Your recent 30-day review summary has 4 late-delivery mentions. Want a delivery-status reply your team can use?",
+      "pending": {
+        "kind": "review_reply",
+        "theme": "delivery_late"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "restaurants",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "SK Pizza Junction",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Suresh",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "review_themes.0.occurrences_30d",
+            "value": 4,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "ipl_match_today",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.match",
+            "value": "DC vs MI",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.match_time_iso",
+            "value": "2026-04-26T19:30:00+05:30",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.538
+    },
+    {
+      "trigger_id": "trg_011_review_theme_late_delivery",
+      "kind": "review_theme_emerged",
+      "merchant_id": "m_005_pizzajunction_restaurant_delhi",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Review mentions are not a defect rate or count of all affected customers.",
+      "body": "Suresh, 4 reviews in the supplied 30-day window mention late delivery. Addressing that is more useful than adding another discount. Want a delivery-status reply your team can use?",
+      "pending": {
+        "kind": "review_reply",
+        "theme": "delivery_late"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "restaurants",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "SK Pizza Junction",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Suresh",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "review_theme_emerged",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.occurrences_30d",
+            "value": 4,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.theme",
+            "value": "delivery_late",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1405
+    },
+    {
+      "trigger_id": "trg_012_milestone_mylari",
+      "kind": "milestone_reached",
+      "merchant_id": "m_006_southindiancafe_restaurant_bangalore",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Does not celebrate an imminent milestone as already achieved.",
+      "body": "Suresh, you're at 145 reviews—5 away from 150. Want a draft plan to review?",
+      "pending": {
+        "kind": "review_request"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "restaurants",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "kn"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Mylari South Indian Cafe",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Suresh",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "milestone_reached",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.metric",
+            "value": "review_count",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.milestone_value",
+            "value": 150,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.value_now",
+            "value": 145,
+            "version": null
+          }
+        ],
+        "calculations": [
+          {
+            "operation": "target_minus_current",
+            "inputs": [
+              "trigger.payload.milestone_value",
+              "trigger.payload.value_now"
+            ],
+            "result": 5
+          }
+        ],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1283
+    },
+    {
+      "trigger_id": "trg_013_corporate_thali_planning",
+      "kind": "active_planning_intent",
+      "merchant_id": "m_006_southindiancafe_restaurant_bangalore",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Explicit planning intent gets a tangible draft now, not another qualifying loop.",
+      "body": "Suresh, here's a draft structure for corporate bulk thali package: confirm the audience, delivery format and capacity first. Price, schedule and capacity remain unconfirmed.",
+      "pending": {
+        "kind": "plan",
+        "topic": "corporate bulk thali package"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "restaurants",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "kn"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Mylari South Indian Cafe",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Suresh",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "active_planning_intent",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.intent_topic",
+            "value": "corporate_bulk_thali_package",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.152
+    },
+    {
+      "trigger_id": "trg_014_seasonal_acquisition_dip_powerhouse",
+      "kind": "seasonal_perf_dip",
+      "merchant_id": "m_007_powerhouse_gym_bangalore",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Uses actual signed change; seasonality/likely driver is not asserted as proven causation.",
+      "body": "Karthik, your profile views are down 30% in the 7d. The supplied context flags a seasonal pattern, not proof that service quality fell. Your listed offer is 3 FREE Trial Classes. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "kn"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "PowerHouse Fitness",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Karthik",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "offers.0.title",
+            "value": "3 FREE Trial Classes",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "seasonal_perf_dip",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.delta_pct",
+            "value": -0.3,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.is_expected_seasonal",
+            "value": true,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.metric",
+            "value": "views",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.window",
+            "value": "7d",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1745
+    },
+    {
+      "trigger_id": "trg_015_winback_rashmi",
+      "kind": "customer_lapsed_hard",
+      "merchant_id": "m_007_powerhouse_gym_bangalore",
+      "customer_id": "c_010_rashmi_for_m007",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Permissioned winback without body shaming or an unverified returning-customer offer.",
+      "body": "Rashmi, your last recorded visit to PowerHouse Fitness was Sat, 28 Feb 2026. A return can start at your own pace—no pressure to make up missed visits. Reply YES for a return-visit enquiry draft, or STOP to opt out.",
+      "pending": {
+        "kind": "return_request"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.language_pref",
+            "value": "english",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.name",
+            "value": "Rashmi",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "preferences.channel",
+            "value": "whatsapp",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "relationship.last_visit",
+            "value": "2026-02-28",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "PowerHouse Fitness",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "customer_lapsed_hard",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.2475
+    },
+    {
+      "trigger_id": "trg_016_kids_yoga_program_drafting",
+      "kind": "active_planning_intent",
+      "merchant_id": "m_008_zenyoga_gym_chennai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Explicit planning intent gets a tangible draft now, not another qualifying loop.",
+      "body": "Padma, here's a draft structure for kids yoga summer camp: confirm the audience, delivery format and capacity first. Existing approved offer: First Month @ ₹499. Any new bundle price still needs your approval.",
+      "pending": {
+        "kind": "plan",
+        "topic": "kids yoga summer camp"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "ta",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Zen Yoga Studio",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Padma",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "offers.0.title",
+            "value": "First Month @ ₹499",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "active_planning_intent",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.intent_topic",
+            "value": "kids_yoga_summer_camp",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.497
+    },
+    {
+      "trigger_id": "trg_017_kids_yoga_trial_followup_karthik",
+      "kind": "trial_followup",
+      "merchant_id": "m_008_zenyoga_gym_chennai",
+      "customer_id": "c_012_karthik_jr_for_m008",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Address guardian when supplied; ISO slot date wins over inconsistent weekday labels.",
+      "body": "Sumitra, following the Wed, 22 Apr 2026 trial at Zen Yoga Studio, you can enquire about the next session. Listed option: Sun, 3 May 2026, 8:00am IST (subject to confirmation). Reply YES for an appointment-enquiry draft, or STOP to opt out.",
+      "pending": {
+        "kind": "recall_request"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.language_pref",
+            "value": "ta-en mix",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.name",
+            "value": "Karthik (parent: Sumitra)",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "preferences.channel",
+            "value": "whatsapp_via_parent",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Zen Yoga Studio",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "trial_followup",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.next_session_options.0.iso",
+            "value": "2026-05-03T08:00:00+05:30",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.trial_date",
+            "value": "2026-04-22",
+            "version": null
+          }
+        ],
+        "calculations": [
+          {
+            "operation": "render_iso_slot_in_Asia/Kolkata_ignore_unreliable_label",
+            "inputs": [
+              "trigger.payload.next_session_options.0.iso"
+            ],
+            "result": "Sun, 3 May 2026, 8:00am IST"
+          }
+        ],
+        "source_values_match": true
+      },
+      "latency_ms": 0.2896
+    },
+    {
+      "trigger_id": "trg_018_supply_atorvastatin_recall",
+      "kind": "supply_alert",
+      "merchant_id": "m_009_apollo_pharmacy_jaipur",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Verify inventory/batches with responsible pharmacist; affected customer count is unknown.",
+      "body": "Ramesh, your supplied digest cites CDSCO alert Apr 2026: “Voluntary recall: Specific atorvastatin batches by manufacturer X”. Supplied batch IDs: AT2024-1102, AT2024-1108. Want a short verification checklist?",
+      "pending": {
+        "kind": "checklist",
+        "digest_path": "category.digest.4",
+        "digest_id": "d_2026W17_atorvastatin_recall",
+        "sensitive": true
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "digest.4.source",
+            "value": "CDSCO alert Apr 2026",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "digest.4.title",
+            "value": "Voluntary recall: Specific atorvastatin batches by manufacturer X",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Apollo Health Plus Pharmacy",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Ramesh",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "supply_alert",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.affected_batches",
+            "value": [
+              "AT2024-1102",
+              "AT2024-1108"
+            ],
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.2705
+    },
+    {
+      "trigger_id": "trg_019_chronic_refill_grandfather",
+      "kind": "chronic_refill_due",
+      "merchant_id": "m_009_apollo_pharmacy_jaipur",
+      "customer_id": "c_013_grandfather_for_m009",
+      "clock": "2026-04-26T18:30:00Z",
+      "decision": "send",
+      "reason": "Scoped refill consent; no drug list, diagnosis, prepared stock, price or dispatch invented.",
+      "body": "Mr. Sharma के परिवार को नमस्ते, Apollo Health Plus Pharmacy का अगला रिफिल रिमाइंडर Tue, 28 Apr 2026 के लिए है। दवा की उपलब्धता फ़ार्मासिस्ट से पक्की करें; यह दवा भेजे जाने की पुष्टि नहीं है। रिफिल पूछताछ का मसौदा पाने के लिए YES, संदेश बंद करने के लिए STOP लिखें।",
+      "pending": {
+        "kind": "refill_request"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.language_pref",
+            "value": "hi",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.name",
+            "value": "Mr. Sharma",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "preferences.channel",
+            "value": "whatsapp_via_son",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Apollo Health Plus Pharmacy",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "chronic_refill_due",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.stock_runs_out_iso",
+            "value": "2026-04-28T00:00:00+05:30",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.3153
+    },
+    {
+      "trigger_id": "trg_020_summer_demand_shift",
+      "kind": "category_seasonal",
+      "merchant_id": "m_009_apollo_pharmacy_jaipur",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Category evidence labeled as such; no forecast for this merchant.",
+      "body": "Ramesh, the supplied category trend for “medicine home delivery” is 42% up year-on-year. This is a category signal, not measured demand at Apollo Health Plus Pharmacy. Want a draft plan to review?",
+      "pending": {
+        "kind": "plan"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "trend_signals.0.delta_yoy",
+            "value": 0.42,
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "trend_signals.0.query",
+            "value": "medicine home delivery",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Apollo Health Plus Pharmacy",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Ramesh",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "category_seasonal",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.2278
+    },
+    {
+      "trigger_id": "trg_021_unverified_gbp_sunrise",
+      "kind": "gbp_unverified",
+      "merchant_id": "m_010_sunrisepharm_pharmacy_lucknow",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "No guaranteed uplift or automated verification claim.",
+      "body": "Vikas, Sunrise Medicos's supplied listing is marked unverified. Let's check that before promising more calls. Want a short verification checklist?",
+      "pending": {
+        "kind": "verification_checklist"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Sunrise Medicos",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Vikas",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.verified",
+            "value": false,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "gbp_unverified",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1075
+    },
+    {
+      "trigger_id": "trg_022_cde_webinar_dentists",
+      "kind": "cde_opportunity",
+      "merchant_id": "m_001_drmeera_dentist_delhi",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Use supplied event date and source, without claiming enrollment.",
+      "body": "Dr. Meera, your supplied digest cites IDA Delhi chapter calendar: “IDA Delhi: Digital impressions — 2026 state of the art”. Listed for Sat, 2 May 2026, 7:00pm IST. Want the supplied summary and its limitations?",
+      "pending": {
+        "kind": "research_summary",
+        "digest_path": "category.digest.2",
+        "digest_id": "d_2026W17_ida_webinar",
+        "sensitive": true
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "digest.2.date",
+            "value": "2026-05-02T19:00:00+05:30",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "digest.2.source",
+            "value": "IDA Delhi chapter calendar",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "digest.2.title",
+            "value": "IDA Delhi: Digital impressions — 2026 state of the art",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Dr. Meera's Dental Clinic",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Meera",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "cde_opportunity",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.2441
+    },
+    {
+      "trigger_id": "trg_023_competitor_opened_dentist",
+      "kind": "competitor_opened",
+      "merchant_id": "m_001_drmeera_dentist_delhi",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Competitor price remains attributed to competitor; no claim of superior treatment/outcomes.",
+      "body": "Dr. Meera, the supplied update lists Smile Studio 1.3 km away. Their offer—not yours—is Dental Cleaning @ ₹199. Your approved option is Dental Cleaning @ ₹299; no need to assume a price match. Want a ready-to-use draft built around it?",
+      "pending": {
+        "kind": "offer_draft",
+        "offer_id": "o_meera_001"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Dr. Meera's Dental Clinic",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Meera",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "offers.0.id",
+            "value": "o_meera_001",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "offers.0.title",
+            "value": "Dental Cleaning @ ₹299",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "competitor_opened",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.competitor_name",
+            "value": "Smile Studio",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.distance_km",
+            "value": 1.3,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.their_offer",
+            "value": "Dental Cleaning @ ₹199",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.2028
+    },
+    {
+      "trigger_id": "trg_024_perf_spike_zen",
+      "kind": "perf_spike",
+      "merchant_id": "m_008_zenyoga_gym_chennai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Uses actual signed change; seasonality/likely driver is not asserted as proven causation.",
+      "body": "Padma, your calls are up 15% in the 7d. Your listed offer is First Month @ ₹499. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "ta",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Zen Yoga Studio",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Padma",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "offers.0.title",
+            "value": "First Month @ ₹499",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "perf_spike",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.delta_pct",
+            "value": 0.15,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.metric",
+            "value": "calls",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "payload.window",
+            "value": "7d",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1744
+    },
+    {
+      "trigger_id": "trg_025_dormancy_glamour",
+      "kind": "dormant_with_vera",
+      "merchant_id": "m_004_glamour_salon_pune",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Re-engagement gives concrete account value without causal revenue-loss claims.",
+      "body": "Anjali, your 30-day snapshot shows 1200 profile views and 8 calls. Let's start with a useful listing review, not a subscription pitch. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "mr"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Glamour Lounge Spa & Salon",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Anjali",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 8,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 1200,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "dormant_with_vera",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1286
+    },
+    {
+      "trigger_id": "trg_026_research_digest_m_017_dr_rajan_denti",
+      "kind": "research_digest",
+      "merchant_id": "m_017_dr_rajan_dentist_mumbai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Cited current digest, honest category-average label; no fabricated local demand or patient cohort.",
+      "body": "Dr. Rajan, your supplied digest cites IDA Delhi chapter calendar: “IDA Delhi: Digital impressions — 2026 state of the art”. Want the supplied summary and its limitations?",
+      "pending": {
+        "kind": "research_summary",
+        "digest_path": "category.digest.2",
+        "digest_id": "d_2026W17_ida_webinar",
+        "sensitive": true
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "digest.2.source",
+            "value": "IDA Delhi chapter calendar",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "digest.2.title",
+            "value": "IDA Delhi: Digital impressions — 2026 state of the art",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "peer_stats.avg_ctr",
+            "value": 0.03,
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "mr"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "City Dental Clinic",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Dr. Rajan",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.ctr",
+            "value": 0.03,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "research_digest",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1757
+    },
+    {
+      "trigger_id": "trg_027_research_digest_m_037_pooja_gym_bang",
+      "kind": "research_digest",
+      "merchant_id": "m_037_pooja_gym_bangalore",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Cited current digest, honest category-average label; no fabricated local demand or patient cohort.",
+      "body": "Pooja, your supplied digest cites Industry watch Apr 2026: “Boutique yoga/pilates studios opening fast in metro neighbourhoods”. Your click-through rate is 4.2%; the supplied category average is 4.5%. Want the supplied summary and its limitations?",
+      "pending": {
+        "kind": "research_summary",
+        "digest_path": "category.digest.2",
+        "digest_id": "d_2026W17_yoga_studio_competition",
+        "sensitive": false
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "digest.2.source",
+            "value": "Industry watch Apr 2026",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "digest.2.title",
+            "value": "Boutique yoga/pilates studios opening fast in metro neighbourhoods",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "peer_stats.avg_ctr",
+            "value": 0.045,
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "kn"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Bend & Burn",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Pooja",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.ctr",
+            "value": 0.042,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "research_digest",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.202
+    },
+    {
+      "trigger_id": "trg_028_research_digest_m_019_karim_salon_lu",
+      "kind": "research_digest",
+      "merchant_id": "m_019_karim_salon_lucknow",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Cited current digest, honest category-average label; no fabricated local demand or patient cohort.",
+      "body": "Karim, your supplied digest cites L'Oreal Pro India calendar: “L'Oreal Professionnel India training: Advanced Balayage Masterclass”. Your click-through rate is 3.8%; the supplied category average is 4%. Want the supplied summary and its limitations?",
+      "pending": {
+        "kind": "research_summary",
+        "digest_path": "category.digest.3",
+        "digest_id": "d_2026W17_olaplex_training",
+        "sensitive": false
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "digest.3.source",
+            "value": "L'Oreal Pro India calendar",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "digest.3.title",
+            "value": "L'Oreal Professionnel India training: Advanced Balayage Masterclass",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "peer_stats.avg_ctr",
+            "value": 0.04,
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Karim's Salon",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Karim",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.ctr",
+            "value": 0.038,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "research_digest",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1957
+    },
+    {
+      "trigger_id": "trg_029_research_digest_m_050_bharti_pharmac",
+      "kind": "research_digest",
+      "merchant_id": "m_050_bharti_pharmacie_chennai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Cited current digest, honest category-average label; no fabricated local demand or patient cohort.",
+      "body": "Bharti, your supplied digest cites Multi-pharmacy aggregate Apr 2026: “Summer demand shift: ORS, sunscreen, anti-fungal up 40%; cold/cough down 60%”. Want the supplied summary and its limitations?",
+      "pending": {
+        "kind": "research_summary",
+        "digest_path": "category.digest.2",
+        "digest_id": "d_2026W17_summer_demand",
+        "sensitive": true
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "digest.2.source",
+            "value": "Multi-pharmacy aggregate Apr 2026",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "digest.2.title",
+            "value": "Summer demand shift: ORS, sunscreen, anti-fungal up 40%; cold/cough down 60%",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "peer_stats.avg_ctr",
+            "value": 0.038,
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "ta"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Wellness Cart",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Bharti",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.ctr",
+            "value": 0.044,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "research_digest",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.171
+    },
+    {
+      "trigger_id": "trg_030_research_digest_m_002_bharat_dentist",
+      "kind": "research_digest",
+      "merchant_id": "m_002_bharat_dentist_mumbai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Cited current digest, honest category-average label; no fabricated local demand or patient cohort.",
+      "body": "Dr. Bharat, your supplied digest cites IDA Delhi chapter calendar: “IDA Delhi: Digital impressions — 2026 state of the art”. Your click-through rate is 1.8%; the supplied category average is 3%. Want the supplied summary and its limitations?",
+      "pending": {
+        "kind": "research_summary",
+        "digest_path": "category.digest.2",
+        "digest_id": "d_2026W17_ida_webinar",
+        "sensitive": true
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "digest.2.source",
+            "value": "IDA Delhi chapter calendar",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "digest.2.title",
+            "value": "IDA Delhi: Digital impressions — 2026 state of the art",
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "peer_stats.avg_ctr",
+            "value": 0.03,
+            "version": null
+          },
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "mr"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Bharat Dental Care",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Bharat",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.ctr",
+            "value": 0.018,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "research_digest",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1884
+    },
+    {
+      "trigger_id": "trg_031_perf_dip_m_023_sushma_salon_p",
+      "kind": "perf_dip",
+      "merchant_id": "m_023_sushma_salon_pune",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Missing comparison data: reports the snapshot without inventing a decline/spike.",
+      "body": "Sushma, your 30-day snapshot shows 2547 profile views and 22 calls. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "The Beauty Bar",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Sushma",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 22,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 2547,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "perf_dip",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1272
+    },
+    {
+      "trigger_id": "trg_032_perf_dip_m_020_renu_salon_luc",
+      "kind": "perf_dip",
+      "merchant_id": "m_020_renu_salon_lucknow",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Uses actual signed change; seasonality/likely driver is not asserted as proven causation.",
+      "body": "Renu, your calls are down 18% in the 7-day comparison. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Beauty Lounge by Renu",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Renu",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.delta_7d.calls_pct",
+            "value": -0.18,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "perf_dip",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1233
+    },
+    {
+      "trigger_id": "trg_033_perf_dip_m_022_renu_salon_ahm",
+      "kind": "perf_dip",
+      "merchant_id": "m_022_renu_salon_ahmedabad",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Uses actual signed change; seasonality/likely driver is not asserted as proven causation.",
+      "body": "Renu, your profile views are down 26% in the 7-day comparison. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Beauty Lounge by Renu",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Renu",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.delta_7d.views_pct",
+            "value": -0.26,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "perf_dip",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1212
+    },
+    {
+      "trigger_id": "trg_034_perf_dip_m_047_anil_pharmacie",
+      "kind": "perf_dip",
+      "merchant_id": "m_047_anil_pharmacie_chandigarh",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Uses actual signed change; seasonality/likely driver is not asserted as proven causation.",
+      "body": "Anil, your profile views are down 23% in the 7-day comparison. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Healthwell Pharmacy",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Anil",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.delta_7d.views_pct",
+            "value": -0.23,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "perf_dip",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1133
+    },
+    {
+      "trigger_id": "trg_035_perf_dip_m_041_akash_gym_hyde",
+      "kind": "perf_dip",
+      "merchant_id": "m_041_akash_gym_hyderabad",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Missing comparison data: reports the snapshot without inventing a decline/spike.",
+      "body": "Akash, your 30-day snapshot shows 3185 profile views and 7 calls. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "te"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Fit Republic",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Akash",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 7,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 3185,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "perf_dip",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1445
+    },
+    {
+      "trigger_id": "trg_036_perf_spike_m_010_sunrisepharm_p",
+      "kind": "perf_spike",
+      "merchant_id": "m_010_sunrisepharm_pharmacy_lucknow",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Uses actual signed change; seasonality/likely driver is not asserted as proven causation.",
+      "body": "Vikas, your calls are up 5% in the 7-day comparison. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Sunrise Medicos",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Vikas",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.delta_7d.calls_pct",
+            "value": 0.05,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "perf_spike",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1219
+    },
+    {
+      "trigger_id": "trg_037_perf_spike_m_023_sushma_salon_p",
+      "kind": "perf_spike",
+      "merchant_id": "m_023_sushma_salon_pune",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Uses actual signed change; seasonality/likely driver is not asserted as proven causation.",
+      "body": "Sushma, your profile views are up 8% in the 7-day comparison. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "The Beauty Bar",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Sushma",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.delta_7d.views_pct",
+            "value": 0.08,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "perf_spike",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1109
+    },
+    {
+      "trigger_id": "trg_038_perf_spike_m_028_karim_restaura",
+      "kind": "perf_spike",
+      "merchant_id": "m_028_karim_restaurant_chennai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Uses actual signed change; seasonality/likely driver is not asserted as proven causation.",
+      "body": "Karim, your calls are up 10% in the 7-day comparison. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "restaurants",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "ta"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Kabab Junction",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Karim",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.delta_7d.calls_pct",
+            "value": 0.1,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "perf_spike",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1176
+    },
+    {
+      "trigger_id": "trg_039_perf_spike_m_017_dr_rajan_denti",
+      "kind": "perf_spike",
+      "merchant_id": "m_017_dr_rajan_dentist_mumbai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Missing comparison data: reports the snapshot without inventing a decline/spike.",
+      "body": "Dr. Rajan, your 30-day snapshot shows 5466 profile views and 41 calls. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "mr"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "City Dental Clinic",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Dr. Rajan",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 41,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 5466,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "perf_spike",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.128
+    },
+    {
+      "trigger_id": "trg_040_perf_spike_m_019_karim_salon_lu",
+      "kind": "perf_spike",
+      "merchant_id": "m_019_karim_salon_lucknow",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Uses actual signed change; seasonality/likely driver is not asserted as proven causation.",
+      "body": "Karim, your profile views are up 26% in the 7-day comparison. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Karim's Salon",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Karim",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.delta_7d.views_pct",
+            "value": 0.26,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "perf_spike",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1132
+    },
+    {
+      "trigger_id": "trg_041_milestone_reached_m_032_mukesh_restaur",
+      "kind": "milestone_reached",
+      "merchant_id": "m_032_mukesh_restaurant_pune",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Missing milestone values are acknowledged, not invented.",
+      "body": "Mukesh, the supplied snapshot records 5 calls, but doesn't establish which milestone was reached. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "restaurants",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Pizza Spot",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Mukesh",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 5,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "milestone_reached",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1112
+    },
+    {
+      "trigger_id": "trg_042_milestone_reached_m_030_sandeep_restau",
+      "kind": "milestone_reached",
+      "merchant_id": "m_030_sandeep_restaurant_chandigarh",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Missing milestone values are acknowledged, not invented.",
+      "body": "Sandeep, the supplied snapshot records 36 calls, but doesn't establish which milestone was reached. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "restaurants",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Tandoor Treats",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Sandeep",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 36,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "milestone_reached",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1085
+    },
+    {
+      "trigger_id": "trg_043_milestone_reached_m_026_karim_salon_ah",
+      "kind": "milestone_reached",
+      "merchant_id": "m_026_karim_salon_ahmedabad",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Missing milestone values are acknowledged, not invented.",
+      "body": "Karim, the supplied snapshot records 13 calls, but doesn't establish which milestone was reached. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Karim's Salon",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Karim",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 13,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "milestone_reached",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1146
+    },
+    {
+      "trigger_id": "trg_044_milestone_reached_m_026_karim_salon_ah",
+      "kind": "milestone_reached",
+      "merchant_id": "m_026_karim_salon_ahmedabad",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Missing milestone values are acknowledged, not invented.",
+      "body": "Karim, the supplied snapshot records 13 calls, but doesn't establish which milestone was reached. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Karim's Salon",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Karim",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 13,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "milestone_reached",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1048
+    },
+    {
+      "trigger_id": "trg_045_milestone_reached_m_005_pizzajunction_",
+      "kind": "milestone_reached",
+      "merchant_id": "m_005_pizzajunction_restaurant_delhi",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Missing milestone values are acknowledged, not invented.",
+      "body": "Suresh, the supplied snapshot records 12 calls, but doesn't establish which milestone was reached. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "restaurants",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "SK Pizza Junction",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Suresh",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 12,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "milestone_reached",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1227
+    },
+    {
+      "trigger_id": "trg_046_dormant_with_vera_m_029_anand_restaura",
+      "kind": "dormant_with_vera",
+      "merchant_id": "m_029_anand_restaurant_chandigarh",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Re-engagement gives concrete account value without causal revenue-loss claims.",
+      "body": "Anand, your 30-day snapshot shows 2189 profile views and 26 calls. Let's start with a useful listing review, not a subscription pitch. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "restaurants",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Chai Point Cafe",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Anand",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 26,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 2189,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "dormant_with_vera",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1196
+    },
+    {
+      "trigger_id": "trg_047_dormant_with_vera_m_047_anil_pharmacie",
+      "kind": "dormant_with_vera",
+      "merchant_id": "m_047_anil_pharmacie_chandigarh",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Re-engagement gives concrete account value without causal revenue-loss claims.",
+      "body": "Anil, your 30-day snapshot shows 2307 profile views and 8 calls. Let's start with a useful listing review, not a subscription pitch. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Healthwell Pharmacy",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Anil",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 8,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 2307,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "dormant_with_vera",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1196
+    },
+    {
+      "trigger_id": "trg_048_dormant_with_vera_m_048_vinod_pharmaci",
+      "kind": "dormant_with_vera",
+      "merchant_id": "m_048_vinod_pharmacie_mumbai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Re-engagement gives concrete account value without causal revenue-loss claims.",
+      "body": "Vinod, your 30-day snapshot shows 5870 profile views and 12 calls. Let's start with a useful listing review, not a subscription pitch. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "mr"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Family Health Pharmacy",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Vinod",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 12,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 5870,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "dormant_with_vera",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1317
+    },
+    {
+      "trigger_id": "trg_049_dormant_with_vera_m_041_akash_gym_hyde",
+      "kind": "dormant_with_vera",
+      "merchant_id": "m_041_akash_gym_hyderabad",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Re-engagement gives concrete account value without causal revenue-loss claims.",
+      "body": "Akash, your 30-day snapshot shows 3185 profile views and 7 calls. Let's start with a useful listing review, not a subscription pitch. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "te"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Fit Republic",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Akash",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 7,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 3185,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "dormant_with_vera",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.2756
+    },
+    {
+      "trigger_id": "trg_050_dormant_with_vera_m_018_dr_asha_dentis",
+      "kind": "dormant_with_vera",
+      "merchant_id": "m_018_dr_asha_dentist_ahmedabad",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Re-engagement gives concrete account value without causal revenue-loss claims.",
+      "body": "Dr. Asha, your 30-day snapshot shows 2105 profile views and 23 calls. Let's start with a useful listing review, not a subscription pitch. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Asha Dental Care",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Dr. Asha",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 23,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 2105,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "dormant_with_vera",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1236
+    },
+    {
+      "trigger_id": "trg_051_review_theme_emerged_m_020_renu_salon_luc",
+      "kind": "review_theme_emerged",
+      "merchant_id": "m_020_renu_salon_lucknow",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "The review_theme_emerged event lacks actionable detail; use a current account snapshot without inventing event specifics.",
+      "body": "Renu, your 30-day snapshot shows 2945 profile views and 33 calls. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Beauty Lounge by Renu",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Renu",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 33,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 2945,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "review_theme_emerged",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1128
+    },
+    {
+      "trigger_id": "trg_052_review_theme_emerged_m_035_manisha_gym_de",
+      "kind": "review_theme_emerged",
+      "merchant_id": "m_035_manisha_gym_delhi",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "The review_theme_emerged event lacks actionable detail; use a current account snapshot without inventing event specifics.",
+      "body": "Manisha, your 30-day snapshot shows 2612 profile views and 30 calls. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Vyayam Yoga",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Manisha",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 2612,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "review_theme_emerged",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1136
+    },
+    {
+      "trigger_id": "trg_053_review_theme_emerged_m_025_salim_salon_mu",
+      "kind": "review_theme_emerged",
+      "merchant_id": "m_025_salim_salon_mumbai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "The review_theme_emerged event lacks actionable detail; use a current account snapshot without inventing event specifics.",
+      "body": "Salim, your 30-day snapshot shows 4061 profile views and 31 calls. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "mr"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Studio Cuts",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Salim",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 31,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 4061,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "review_theme_emerged",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1189
+    },
+    {
+      "trigger_id": "trg_054_review_theme_emerged_m_045_vinod_pharmaci",
+      "kind": "review_theme_emerged",
+      "merchant_id": "m_045_vinod_pharmacie_mumbai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "The review_theme_emerged event lacks actionable detail; use a current account snapshot without inventing event specifics.",
+      "body": "Vinod, your 30-day snapshot shows 5572 profile views and 31 calls. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "mr"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Family Health Pharmacy",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Vinod",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 31,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 5572,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "review_theme_emerged",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1085
+    },
+    {
+      "trigger_id": "trg_055_review_theme_emerged_m_020_renu_salon_luc",
+      "kind": "review_theme_emerged",
+      "merchant_id": "m_020_renu_salon_lucknow",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "The review_theme_emerged event lacks actionable detail; use a current account snapshot without inventing event specifics.",
+      "body": "Renu, your 30-day snapshot shows 2945 profile views and 33 calls. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Beauty Lounge by Renu",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Renu",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 33,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 2945,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "review_theme_emerged",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1079
+    },
+    {
+      "trigger_id": "trg_056_competitor_opened_m_006_southindiancaf",
+      "kind": "competitor_opened",
+      "merchant_id": "m_006_southindiancafe_restaurant_bangalore",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "The competitor_opened event lacks actionable detail; use a current account snapshot without inventing event specifics.",
+      "body": "Suresh, your 30-day snapshot shows 12400 profile views and 88 calls. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "restaurants",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "kn"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Mylari South Indian Cafe",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Suresh",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 88,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 12400,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "competitor_opened",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1333
+    },
+    {
+      "trigger_id": "trg_057_competitor_opened_m_044_vinod_pharmaci",
+      "kind": "competitor_opened",
+      "merchant_id": "m_044_vinod_pharmacie_chennai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "The competitor_opened event lacks actionable detail; use a current account snapshot without inventing event specifics.",
+      "body": "Vinod, your 30-day snapshot shows 3421 profile views and 28 calls. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "ta"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Family Health Pharmacy",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Vinod",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 28,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 3421,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "competitor_opened",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1105
+    },
+    {
+      "trigger_id": "trg_058_competitor_opened_m_044_vinod_pharmaci",
+      "kind": "competitor_opened",
+      "merchant_id": "m_044_vinod_pharmacie_chennai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "The competitor_opened event lacks actionable detail; use a current account snapshot without inventing event specifics.",
+      "body": "Vinod, your 30-day snapshot shows 3421 profile views and 28 calls. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "ta"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Family Health Pharmacy",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Vinod",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 28,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 3421,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "competitor_opened",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1099
+    },
+    {
+      "trigger_id": "trg_059_competitor_opened_m_017_dr_rajan_denti",
+      "kind": "competitor_opened",
+      "merchant_id": "m_017_dr_rajan_dentist_mumbai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "The competitor_opened event lacks actionable detail; use a current account snapshot without inventing event specifics.",
+      "body": "Dr. Rajan, your 30-day snapshot shows 5466 profile views and 41 calls. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "mr"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "City Dental Clinic",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Dr. Rajan",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 41,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 5466,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "competitor_opened",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1105
+    },
+    {
+      "trigger_id": "trg_060_competitor_opened_m_041_akash_gym_hyde",
+      "kind": "competitor_opened",
+      "merchant_id": "m_041_akash_gym_hyderabad",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "The competitor_opened event lacks actionable detail; use a current account snapshot without inventing event specifics.",
+      "body": "Akash, your 30-day snapshot shows 3185 profile views and 7 calls. Want a focused listing-check plan before changing prices?",
+      "pending": {
+        "kind": "performance_audit"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "te"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Fit Republic",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Akash",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 7,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 3185,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "competitor_opened",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.111
+    },
+    {
+      "trigger_id": "trg_061_festival_upcoming_m_037_pooja_gym_bang",
+      "kind": "festival_upcoming",
+      "merchant_id": "m_037_pooja_gym_bangalore",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "insufficient_safe_evidence",
+      "body": null,
+      "pending": null,
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "kn"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Bend & Burn",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Pooja",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "festival_upcoming",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.0618
+    },
+    {
+      "trigger_id": "trg_062_festival_upcoming_m_015_dr_priya_denti",
+      "kind": "festival_upcoming",
+      "merchant_id": "m_015_dr_priya_dentist_chandigarh",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "insufficient_safe_evidence",
+      "body": null,
+      "pending": null,
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Family Dental Centre",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Dr. Priya",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "festival_upcoming",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.0632
+    },
+    {
+      "trigger_id": "trg_063_festival_upcoming_m_037_pooja_gym_bang",
+      "kind": "festival_upcoming",
+      "merchant_id": "m_037_pooja_gym_bangalore",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "insufficient_safe_evidence",
+      "body": null,
+      "pending": null,
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "kn"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Bend & Burn",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Pooja",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "festival_upcoming",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.0579
+    },
+    {
+      "trigger_id": "trg_064_festival_upcoming_m_010_sunrisepharm_p",
+      "kind": "festival_upcoming",
+      "merchant_id": "m_010_sunrisepharm_pharmacy_lucknow",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "insufficient_safe_evidence",
+      "body": null,
+      "pending": null,
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Sunrise Medicos",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Vikas",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "festival_upcoming",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.0601
+    },
+    {
+      "trigger_id": "trg_065_festival_upcoming_m_041_akash_gym_hyde",
+      "kind": "festival_upcoming",
+      "merchant_id": "m_041_akash_gym_hyderabad",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "insufficient_safe_evidence",
+      "body": null,
+      "pending": null,
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "te"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Fit Republic",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Akash",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "festival_upcoming",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.057
+    },
+    {
+      "trigger_id": "trg_066_recall_due_m_008_zenyoga_gym_ch",
+      "kind": "recall_due",
+      "merchant_id": "m_008_zenyoga_gym_chennai",
+      "customer_id": "c_034_diya_for_m_008_zenyoga_gym_chennai",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0159
+    },
+    {
+      "trigger_id": "trg_067_recall_due_m_004_glamour_salon_",
+      "kind": "recall_due",
+      "merchant_id": "m_004_glamour_salon_pune",
+      "customer_id": "c_026_saanvi_for_m_004_glamour_salon_pune",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0114
+    },
+    {
+      "trigger_id": "trg_068_recall_due_m_050_bharti_pharmac",
+      "kind": "recall_due",
+      "merchant_id": "m_050_bharti_pharmacie_chennai",
+      "customer_id": "c_199_saanvi_for_m_050_bharti_pharmacie_chennai",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0107
+    },
+    {
+      "trigger_id": "trg_069_recall_due_m_035_manisha_gym_de",
+      "kind": "recall_due",
+      "merchant_id": "m_035_manisha_gym_delhi",
+      "customer_id": "c_139_aditya_for_m_035_manisha_gym_delhi",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0103
+    },
+    {
+      "trigger_id": "trg_070_recall_due_m_045_vinod_pharmaci",
+      "kind": "recall_due",
+      "merchant_id": "m_045_vinod_pharmacie_mumbai",
+      "customer_id": "c_180_diya_for_m_045_vinod_pharmacie_mumbai",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0102
+    },
+    {
+      "trigger_id": "trg_071_customer_lapsed_soft_m_014_dr_asha_dentis",
+      "kind": "customer_lapsed_soft",
+      "merchant_id": "m_014_dr_asha_dentist_chandigarh",
+      "customer_id": "c_055_reyansh_for_m_014_dr_asha_dentist_chandigarh",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Permissioned winback without body shaming or an unverified returning-customer offer.",
+      "body": "Reyansh, your last recorded visit to Asha Dental Care was Wed, 1 Apr 2026. A return can start at your own pace—no pressure to make up missed visits. Reply YES for a return-visit enquiry draft, or STOP to opt out.",
+      "pending": {
+        "kind": "return_request"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.language_pref",
+            "value": "en",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.name",
+            "value": "Reyansh",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "preferences.channel",
+            "value": "whatsapp",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "relationship.last_visit",
+            "value": "2026-04-01",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Asha Dental Care",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "customer_lapsed_soft",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.2421
+    },
+    {
+      "trigger_id": "trg_072_customer_lapsed_soft_m_049_komal_pharmaci",
+      "kind": "customer_lapsed_soft",
+      "merchant_id": "m_049_komal_pharmacie_lucknow",
+      "customer_id": "c_193_reyansh_for_m_049_komal_pharmacie_lucknow",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Permissioned winback without body shaming or an unverified returning-customer offer.",
+      "body": "Reyansh, Daily Care Medicos mein aapki last recorded visit Wed, 1 Apr 2026 thi. Apne pace par wapas shuru kar sakte hain—missed visits ka pressure nahi. Return visit enquiry draft ke liye YES, messages band karne ke liye STOP.",
+      "pending": {
+        "kind": "return_request"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.language_pref",
+            "value": "hi-en mix",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.name",
+            "value": "Reyansh",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "preferences.channel",
+            "value": "whatsapp",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "relationship.last_visit",
+            "value": "2026-04-01",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Daily Care Medicos",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "customer_lapsed_soft",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.2285
+    },
+    {
+      "trigger_id": "trg_073_customer_lapsed_soft_m_015_dr_priya_denti",
+      "kind": "customer_lapsed_soft",
+      "merchant_id": "m_015_dr_priya_dentist_chandigarh",
+      "customer_id": "c_057_aarav_for_m_015_dr_priya_dentist_chandigarh",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Permissioned winback without body shaming or an unverified returning-customer offer.",
+      "body": "Aarav, your last recorded visit to Family Dental Centre was Wed, 1 Apr 2026. A return can start at your own pace—no pressure to make up missed visits. Reply YES for a return-visit enquiry draft, or STOP to opt out.",
+      "pending": {
+        "kind": "return_request"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "dentists",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.language_pref",
+            "value": "en",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.name",
+            "value": "Aarav",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "preferences.channel",
+            "value": "whatsapp",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "relationship.last_visit",
+            "value": "2026-04-01",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Family Dental Centre",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "customer_lapsed_soft",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.2135
+    },
+    {
+      "trigger_id": "trg_074_customer_lapsed_soft_m_037_pooja_gym_bang",
+      "kind": "customer_lapsed_soft",
+      "merchant_id": "m_037_pooja_gym_bangalore",
+      "customer_id": "c_145_riya_for_m_037_pooja_gym_bangalore",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Permissioned winback without body shaming or an unverified returning-customer offer.",
+      "body": "Riya, Bend & Burn में आपकी पिछली दर्ज विज़िट Wed, 1 Apr 2026 की है। अपनी सुविधा से लौटें; छूटी विज़िट पूरी करने का दबाव नहीं है। वापसी की विज़िट की पूछताछ के लिए YES, संदेश बंद करने के लिए STOP लिखें।",
+      "pending": {
+        "kind": "return_request"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.language_pref",
+            "value": "hi",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.name",
+            "value": "Riya",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "preferences.channel",
+            "value": "whatsapp",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "relationship.last_visit",
+            "value": "2026-04-01",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Bend & Burn",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "customer_lapsed_soft",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1795
+    },
+    {
+      "trigger_id": "trg_075_customer_lapsed_soft_m_048_vinod_pharmaci",
+      "kind": "customer_lapsed_soft",
+      "merchant_id": "m_048_vinod_pharmacie_mumbai",
+      "customer_id": "c_189_tara_for_m_048_vinod_pharmacie_mumbai",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Permissioned winback without body shaming or an unverified returning-customer offer.",
+      "body": "Tara, your last recorded visit to Family Health Pharmacy was Wed, 1 Apr 2026. A return can start at your own pace—no pressure to make up missed visits. Reply YES for a return-visit enquiry draft, or STOP to opt out.",
+      "pending": {
+        "kind": "return_request"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.language_pref",
+            "value": "en",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "identity.name",
+            "value": "Tara",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "preferences.channel",
+            "value": "whatsapp",
+            "version": null
+          },
+          {
+            "scope": "customer",
+            "path": "relationship.last_visit",
+            "value": "2026-04-01",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Family Health Pharmacy",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "customer_lapsed_soft",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.2105
+    },
+    {
+      "trigger_id": "trg_076_appointment_tomorrow_m_019_karim_salon_lu",
+      "kind": "appointment_tomorrow",
+      "merchant_id": "m_019_karim_salon_lucknow",
+      "customer_id": "c_075_aditya_for_m_019_karim_salon_lucknow",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0198
+    },
+    {
+      "trigger_id": "trg_077_appointment_tomorrow_m_020_renu_salon_luc",
+      "kind": "appointment_tomorrow",
+      "merchant_id": "m_020_renu_salon_lucknow",
+      "customer_id": "c_080_riya_for_m_020_renu_salon_lucknow",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0109
+    },
+    {
+      "trigger_id": "trg_078_appointment_tomorrow_m_006_southindiancaf",
+      "kind": "appointment_tomorrow",
+      "merchant_id": "m_006_southindiancafe_restaurant_bangalore",
+      "customer_id": "c_008_dipti_for_m006",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0105
+    },
+    {
+      "trigger_id": "trg_079_appointment_tomorrow_m_017_dr_rajan_denti",
+      "kind": "appointment_tomorrow",
+      "merchant_id": "m_017_dr_rajan_dentist_mumbai",
+      "customer_id": "c_068_arjun_for_m_017_dr_rajan_dentist_mumbai",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0103
+    },
+    {
+      "trigger_id": "trg_080_appointment_tomorrow_m_024_geeta_salon_ba",
+      "kind": "appointment_tomorrow",
+      "merchant_id": "m_024_geeta_salon_bangalore",
+      "customer_id": "c_094_ananya_for_m_024_geeta_salon_bangalore",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0101
+    },
+    {
+      "trigger_id": "trg_081_chronic_refill_due_m_011_dr_sameer_dent",
+      "kind": "chronic_refill_due",
+      "merchant_id": "m_011_dr_sameer_dentist_bangalore",
+      "customer_id": "c_044_vivaan_for_m_011_dr_sameer_dentist_bangalore",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0104
+    },
+    {
+      "trigger_id": "trg_082_chronic_refill_due_m_036_roshni_gym_ahm",
+      "kind": "chronic_refill_due",
+      "merchant_id": "m_036_roshni_gym_ahmedabad",
+      "customer_id": "c_142_ira_for_m_036_roshni_gym_ahmedabad",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0102
+    },
+    {
+      "trigger_id": "trg_083_chronic_refill_due_m_041_akash_gym_hyde",
+      "kind": "chronic_refill_due",
+      "merchant_id": "m_041_akash_gym_hyderabad",
+      "customer_id": "c_163_aryan_for_m_041_akash_gym_hyderabad",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0103
+    },
+    {
+      "trigger_id": "trg_084_chronic_refill_due_m_031_suresh_restaur",
+      "kind": "chronic_refill_due",
+      "merchant_id": "m_031_suresh_restaurant_jaipur",
+      "customer_id": "c_122_anika_for_m_031_suresh_restaurant_jaipur",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0101
+    },
+    {
+      "trigger_id": "trg_085_chronic_refill_due_m_030_sandeep_restau",
+      "kind": "chronic_refill_due",
+      "merchant_id": "m_030_sandeep_restaurant_chandigarh",
+      "customer_id": "c_120_aarav_for_m_030_sandeep_restaurant_chandigarh",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0101
+    },
+    {
+      "trigger_id": "trg_086_trial_followup_m_038_pooja_gym_chan",
+      "kind": "trial_followup",
+      "merchant_id": "m_038_pooja_gym_chandigarh",
+      "customer_id": "c_149_myra_for_m_038_pooja_gym_chandigarh",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0099
+    },
+    {
+      "trigger_id": "trg_087_trial_followup_m_050_bharti_pharmac",
+      "kind": "trial_followup",
+      "merchant_id": "m_050_bharti_pharmacie_chennai",
+      "customer_id": "c_197_anika_for_m_050_bharti_pharmacie_chennai",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0105
+    },
+    {
+      "trigger_id": "trg_088_trial_followup_m_040_karan_gym_ahme",
+      "kind": "trial_followup",
+      "merchant_id": "m_040_karan_gym_ahmedabad",
+      "customer_id": "c_160_kavya_for_m_040_karan_gym_ahmedabad",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0191
+    },
+    {
+      "trigger_id": "trg_089_trial_followup_m_043_komal_pharmaci",
+      "kind": "trial_followup",
+      "merchant_id": "m_043_komal_pharmacie_ahmedabad",
+      "customer_id": "c_171_arjun_for_m_043_komal_pharmacie_ahmedabad",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.01
+    },
+    {
+      "trigger_id": "trg_090_trial_followup_m_038_pooja_gym_chan",
+      "kind": "trial_followup",
+      "merchant_id": "m_038_pooja_gym_chandigarh",
+      "customer_id": "c_149_myra_for_m_038_pooja_gym_chandigarh",
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "skip",
+      "reason": "consent_scope_mismatch",
+      "body": null,
+      "pending": null,
+      "evidence": null,
+      "latency_ms": 0.0098
+    },
+    {
+      "trigger_id": "trg_091_renewal_due_m_048_vinod_pharmaci",
+      "kind": "renewal_due",
+      "merchant_id": "m_048_vinod_pharmacie_mumbai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Reports days as a snapshot rather than silently assuming an as-of date; no payment claim.",
+      "body": "Vinod, your supplied Trial subscription snapshot has 5 days remaining. Want a draft plan to review?",
+      "pending": {
+        "kind": "renewal_plan"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "mr"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Family Health Pharmacy",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Vinod",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "subscription.days_remaining",
+            "value": 5,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "subscription.plan",
+            "value": "Trial",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "renewal_due",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1129
+    },
+    {
+      "trigger_id": "trg_092_renewal_due_m_033_anand_restaura",
+      "kind": "renewal_due",
+      "merchant_id": "m_033_anand_restaurant_bangalore",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Reports days as a snapshot rather than silently assuming an as-of date; no payment claim.",
+      "body": "Anand, your supplied Pro subscription snapshot has 211 days remaining. Want a draft plan to review?",
+      "pending": {
+        "kind": "renewal_plan"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "restaurants",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "kn"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Chai Point Cafe",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Anand",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "subscription.days_remaining",
+            "value": 211,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "subscription.plan",
+            "value": "Pro",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "renewal_due",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1142
+    },
+    {
+      "trigger_id": "trg_093_renewal_due_m_049_komal_pharmaci",
+      "kind": "renewal_due",
+      "merchant_id": "m_049_komal_pharmacie_lucknow",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Reports days as a snapshot rather than silently assuming an as-of date; no payment claim.",
+      "body": "Komal, your supplied Pro subscription snapshot has 278 days remaining. Want a draft plan to review?",
+      "pending": {
+        "kind": "renewal_plan"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Daily Care Medicos",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Komal",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "subscription.days_remaining",
+            "value": 278,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "subscription.plan",
+            "value": "Pro",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "renewal_due",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1083
+    },
+    {
+      "trigger_id": "trg_094_renewal_due_m_021_paras_salon_ch",
+      "kind": "renewal_due",
+      "merchant_id": "m_021_paras_salon_chandigarh",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Reports days as a snapshot rather than silently assuming an as-of date; no payment claim.",
+      "body": "Paras, your supplied Pro subscription snapshot has 0 days remaining. Want a draft plan to review?",
+      "pending": {
+        "kind": "renewal_plan"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Paras Hair & Beauty",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Paras",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "subscription.days_remaining",
+            "value": 0,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "subscription.plan",
+            "value": "Pro",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "renewal_due",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1117
+    },
+    {
+      "trigger_id": "trg_095_renewal_due_m_039_karan_gym_jaip",
+      "kind": "renewal_due",
+      "merchant_id": "m_039_karan_gym_jaipur",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "Reports days as a snapshot rather than silently assuming an as-of date; no payment claim.",
+      "body": "Karan, your supplied Pro subscription snapshot has 85 days remaining. Want a draft plan to review?",
+      "pending": {
+        "kind": "renewal_plan"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Iron Forge Fitness",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Karan",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "subscription.days_remaining",
+            "value": 85,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "subscription.plan",
+            "value": "Pro",
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "renewal_due",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1062
+    },
+    {
+      "trigger_id": "trg_096_curious_ask_due_m_006_southindiancaf",
+      "kind": "curious_ask_due",
+      "merchant_id": "m_006_southindiancafe_restaurant_bangalore",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "One category-specific question; answer becomes a draftable next action, not a fabricated demand claim.",
+      "body": "Suresh, your 30-day snapshot shows 12400 profile views and 88 calls. Which dish did customers ask for most this week?",
+      "pending": {
+        "kind": "curiosity"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "restaurants",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "kn"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Mylari South Indian Cafe",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Suresh",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 88,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 12400,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "curious_ask_due",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1259
+    },
+    {
+      "trigger_id": "trg_097_curious_ask_due_m_041_akash_gym_hyde",
+      "kind": "curious_ask_due",
+      "merchant_id": "m_041_akash_gym_hyderabad",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "One category-specific question; answer becomes a draftable next action, not a fabricated demand claim.",
+      "body": "Akash, your 30-day snapshot shows 3185 profile views and 7 calls. What is the main thing stopping trial members from returning this week?",
+      "pending": {
+        "kind": "curiosity"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "te"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Fit Republic",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Akash",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 7,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 3185,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "curious_ask_due",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1038
+    },
+    {
+      "trigger_id": "trg_098_curious_ask_due_m_039_karan_gym_jaip",
+      "kind": "curious_ask_due",
+      "merchant_id": "m_039_karan_gym_jaipur",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "One category-specific question; answer becomes a draftable next action, not a fabricated demand claim.",
+      "body": "Karan, your 30-day snapshot shows 2055 profile views and 23 calls. What is the main thing stopping trial members from returning this week?",
+      "pending": {
+        "kind": "curiosity"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "gyms",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Iron Forge Fitness",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Karan",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 23,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 2055,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "curious_ask_due",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1032
+    },
+    {
+      "trigger_id": "trg_099_curious_ask_due_m_048_vinod_pharmaci",
+      "kind": "curious_ask_due",
+      "merchant_id": "m_048_vinod_pharmacie_mumbai",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "One category-specific question; answer becomes a draftable next action, not a fabricated demand claim.",
+      "body": "Vinod, your 30-day snapshot shows 5870 profile views and 12 calls. Which availability question came up most at the counter this week?",
+      "pending": {
+        "kind": "curiosity"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "pharmacies",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi",
+              "mr"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Family Health Pharmacy",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Vinod",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 12,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 5870,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "curious_ask_due",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.103
+    },
+    {
+      "trigger_id": "trg_100_curious_ask_due_m_021_paras_salon_ch",
+      "kind": "curious_ask_due",
+      "merchant_id": "m_021_paras_salon_chandigarh",
+      "customer_id": null,
+      "clock": "2026-04-26T10:00:00Z",
+      "decision": "send",
+      "reason": "One category-specific question; answer becomes a draftable next action, not a fabricated demand claim.",
+      "body": "Paras, your 30-day snapshot shows 4171 profile views and 31 calls. Which service did customers ask about most this week?",
+      "pending": {
+        "kind": "curiosity"
+      },
+      "evidence": {
+        "facts": [
+          {
+            "scope": "category",
+            "path": "slug",
+            "value": "salons",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.languages",
+            "value": [
+              "en",
+              "hi"
+            ],
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.name",
+            "value": "Paras Hair & Beauty",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "identity.owner_first_name",
+            "value": "Paras",
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.calls",
+            "value": 31,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.views",
+            "value": 4171,
+            "version": null
+          },
+          {
+            "scope": "merchant",
+            "path": "performance.window_days",
+            "value": 30,
+            "version": null
+          },
+          {
+            "scope": "trigger",
+            "path": "kind",
+            "value": "curious_ask_due",
+            "version": null
+          }
+        ],
+        "calculations": [],
+        "source_values_match": true
+      },
+      "latency_ms": 0.1
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+.git
+.env
+.env.*
+.venv
+__pycache__
+.pytest_cache
+data
+expanded
+reports
+vendor
+tests
+docs
+*.sqlite3*
+.coverage

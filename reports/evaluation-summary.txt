@@ -1,0 +1,28 @@
+{
+  "label": "Engineering replay of supplied fixtures; no quality score or real-world outcome measured.",
+  "python": "3.13.5",
+  "clock_mode": "explicit per-case historical simulation; source fixtures unchanged",
+  "counts": {
+    "category": 5,
+    "merchant": 50,
+    "customer": 200,
+    "trigger": 100
+  },
+  "kinds": 26,
+  "decisions": {
+    "send": 74,
+    "skip": 26
+  },
+  "skip_reasons": {
+    "insufficient_safe_evidence": 6,
+    "consent_scope_mismatch": 20
+  },
+  "latency_ms": {
+    "median": 0.06332750001547538,
+    "p95": 0.19824400010293175,
+    "max": 0.9236329999566806
+  },
+  "provenance_value_mismatches": 0,
+  "live_llm_calls": 0
+}
+Saved: /mnt/data/vera-compass/reports/dataset-evaluation.json

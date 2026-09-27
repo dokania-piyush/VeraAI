@@ -1,0 +1,5 @@
+INITIAL: Mira, the supplied update lists Nearby Example Salon 1.3 km away. Their offer—not yours—is Hair Spa @ ₹399. Your approved option is Hair Spa @ ₹499; no need to assume a price match. Want a ready-to-use draft built around it?
+AFTER PRICE UPDATE + YES: Here is your draft: “Mira Studio: Hair Spa @ ₹599. Contact our team to check eligibility and availability.” Nothing has been published or sent.
+STOP: {'action': 'end', 'rationale': 'Opt-out persisted for this recipient; future proactive outreach is blocked.'}
+NEW TRIGGER AFTER STOP: {'actions': []}
+Transcript: reports/demo-transcript.json

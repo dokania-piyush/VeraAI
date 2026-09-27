@@ -1,0 +1,201 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vera Compass — Setup to Submission</title><style>body{margin:0;background:#f6f5f0;color:#202d2b;font:16px/1.75 system-ui,-apple-system,Segoe UI,sans-serif}header{background:#175d4d;color:white;padding:24px max(6vw,20px);letter-spacing:.09em;font-size:13px}main{max-width:950px;background:#fffefa;margin:35px auto;padding:40px 55px;border:1px solid #deded5;border-radius:10px}h1{font:38px/1.15 Georgia,serif}h2{font:27px/1.3 Georgia,serif;border-top:1px solid #e3e3da;padding-top:23px;margin-top:38px}pre{background:#edf0e9;white-space:pre-wrap;overflow-wrap:anywhere;padding:17px 20px;border-radius:5px;font-size:13px;line-height:1.55}code{font-size:.86em}a{color:#175d4d}table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:10px;border:1px solid #deded5;text-align:left}blockquote{border-left:3px solid #175d4d;padding-left:20px}@media(max-width:700px){main{margin:15px;padding:22px}h1{font-size:29px}body{font-size:14px}}</style></head><body><header>VERA COMPASS / SETUP → TEST → DEPLOY → SUBMIT</header><main><pre># Vera Compass — from ZIP to a working submission
+
+This guide assumes you are starting from the downloaded codebase. You do not need a model subscription, Node.js, a frontend build system, Docker, or a WhatsApp account for the default local application.
+
+**What is complete:** application source, tests, original starter kit, dataset generator integration, demo, decision studio, operational scripts and deployment recipes.
+
+**What is not done:** hosting in your account, submitting your personal details, a live paid-model quality evaluation, or evidence of selection. The application must still be reviewed and tested on its final host.
+
+## 1. Extract and open the folder
+
+Extract `vera-compass-codebase.zip`. The top-level folder is `vera-compass`. Open that folder in your editor and open a terminal there. Commands below run from that folder, not its parent.
+
+Check Python:
+
+```bash
+python --version
+```
+
+Use Python 3.11 or newer; the local build was tested on Python 3.13.5. On macOS/Linux, use `python3` instead of `python` before activating the virtual environment when needed. Only the reported environment was actually executed here; the included CI matrix is not a claim that remote jobs have already run.
+
+## 2. Create an isolated environment
+
+**macOS / Linux:**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-dev.txt -c requirements-lock.txt
+```
+
+**Windows PowerShell:**
+
+```powershell
+py -3 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt -c requirements-lock.txt
+```
+
+The explicit `.venv` Python path avoids changing your machine&#x27;s PowerShell execution policy. On Windows, substitute `.\.venv\Scripts\python.exe` for `python` in later commands. You can alternatively activate the environment using your normal approved workflow.
+
+`requirements-lock.txt` constrains the tested dependency versions. No model calls happen during tests. Installation downloads normal Python packages; network access to the package index is required. The author&#x27;s separate fresh-install attempt timed out accessing the index, so package installation on a new host still needs verification.
+
+## 3. Set your identity and a private studio token
+
+Copy `.env.example` to `.env` using your editor/file manager, or:
+
+```bash
+python -c &quot;import shutil; shutil.copyfile(&#x27;.env.example&#x27;, &#x27;.env&#x27;)&quot;
+python -c &quot;import secrets; print(secrets.token_urlsafe(32))&quot;
+```
+
+Paste the generated secret into `VERA_ADMIN_TOKEN` in `.env`. Replace:
+
+```text
+VERA_TEAM_MEMBERS=Your full name
+VERA_CONTACT_EMAIL=you@example.com
+VERA_TEAM_NAME=Vera Compass
+VERA_ADMIN_TOKEN=your-generated-private-token
+```
+
+Use one actual applicant, not the sample name. Set `VERA_SUBMITTED_AT` to your actual submission time in ISO format when submitting. Keep `VERA_SEMANTIC_ENABLED=false` initially. Leave `VERA_API_TOKEN` blank for the public challenge unless organizers confirm their harness can send that header. Admin and judge tokens are different purposes.
+
+Never commit `.env`, copy keys into screenshots, or paste an admin token into the submission URL. `.gitignore` excludes secrets and runtime databases. The `.env` reader accepts one `KEY=value` per line, optional whole-value quotes, and full-line comments. It does not evaluate shell expressions. Existing host environment variables override `.env` values.
+
+## 4. Run the automated suite
+
+```bash
+python -m pytest -q
+```
+
+A failed test is a stop sign: inspect and resolve it before deployment. Do not treat a simulator&#x27;s printed “PASS” as equivalent to these independent assertions. To produce a coverage report:
+
+```bash
+python -m pytest --cov=vera --cov-report=term-missing --cov-report=json:reports/coverage.json
+```
+
+Reports supplied in this ZIP describe the actual author&#x27;s run; a new run should be reported separately.
+
+## 5. Start the bot
+
+```bash
+python -m scripts.run
+```
+
+Keep that terminal open. In a browser open `http://127.0.0.1:8080/v1/healthz`. It should show `status: ok`. An empty context count on a fresh server is correct; the judge supplies context. The server never silently preloads the sample data.
+
+Open `http://127.0.0.1:8080/studio`, enter your admin token, and select a case. The studio supports changing a price, withdrawing an offer, or revoking customer consent. Press **Evaluate next action** after each change.
+
+Preview is intentionally isolated: it does not deliver anything or change persistent STOP/cooldown state. The lower records panel shows actual API activity separately. The API documentation is at `/docs`; raw schema is at `/openapi.json`.
+
+When port 8080 is occupied, use:
+
+```bash
+python -m scripts.run --port 8765
+```
+
+Then pass `--url http://127.0.0.1:8765` to the demo/preflight/load scripts and open the studio on that port.
+
+## 6. Prove the complete stateful flow
+
+Open a **second** terminal in the same folder and activate the environment again. Then:
+
+```bash
+python -m scripts.demo --reset
+```
+
+`--reset` erases that target server&#x27;s test database. Use only a development instance, never an active judging session.
+
+The demo pushes synthetic records, gets a ₹499 offer draft invitation, updates the same offer to ₹599, replies “yes,” and checks that the delivered draft uses ₹599. It then sends STOP and verifies that a new proactive trigger produces no message. Read `reports/demo-transcript.json` for the full actual requests/responses.
+
+Additional checks:
+
+```bash
+python -m scripts.preflight
+python -m scripts.load_test --requests 120 --rate 10
+```
+
+The load script writes isolated synthetic records and defaults to loopback-only. It is a small local mixed-HTTP check, not a production throughput guarantee.
+
+## 7. Replay the original expanded dataset correctly
+
+```bash
+python vendor/magicpin/dataset/generate_dataset.py --seed-dir vendor/magicpin/dataset --out expanded
+python -m scripts.evaluate --dataset expanded
+```
+
+Read `reports/dataset-evaluation.json`. Each scenario uses an explicit historical clock because the supplied dates are old or internally inconsistent. The original records are not rewritten. This does not bypass expiry in the real API: `/v1/tick` always uses the judge&#x27;s supplied `now`.
+
+The replay checks eligibility, composition and source-value provenance. It is **not an LLM quality judge**. A skipped case may be justified by consent or insufficient evidence; it is not automatically “passed” or “failed.” Review missed useful opportunities as well as unsafe sends.
+
+## 8. Measure message quality before declaring it submission-ready
+
+The official local harness is preserved under `vendor/magicpin/judge_simulator.py`. Read its header and the testing brief. Use a working copy to configure provider, model, API key, URL and scenario. Do not publish that configured copy or replace your actual results with the supplied examples. The audit identified incomplete behavior checks and fallback scoring, so treat its results as one diagnostic.
+
+An independent, stricter outbound-copy reviewer is included. It sends the complete case context and rejects invalid score JSON instead of inventing neutral scores. This requires separate provider credentials and costs money:
+
+```text
+VERA_JUDGE_MODEL=an-available-model-in-your-account
+VERA_JUDGE_API_KEY=your-private-provider-key
+```
+
+After setting those in `.env`:
+
+```bash
+python -m scripts.quality_check --dataset expanded --limit 10 --allow-paid
+```
+
+No live call to this reviewer was made during creation. Its labels are not official scores. It reviews outbound copy, not your full conversation state machine; human review and the behavioral suite remain necessary. Inspect generic phrasing, inappropriate detail and excessive disclaimers. Improve `vera/strategies.py`, `vera/conversation.py` and `vera/language.py`, then rerun the tests. Add each discovered failure as a regression test.
+
+Optional semantic assistance for unfamiliar reply wording is separate from quality scoring. Configure `VERA_LLM_MODEL`, `VERA_LLM_API_KEY` and `VERA_SEMANTIC_ENABLED=true` only after reviewing [LIMITATIONS](docs/LIMITATIONS.md). Do not turn it on merely to claim a bigger model: it was tested with mocks, not a live provider.
+
+## 9. Deploy one instance with deliberate storage
+
+Follow [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). The simplest managed-service path is a Python web service connected to a GitHub repository, using:
+
+```text
+Build: pip install -r requirements.txt -c requirements-lock.txt
+Start: python -m scripts.run --host 0.0.0.0
+Health check: /v1/healthz
+Instances: 1
+```
+
+Set identity and secrets in the hosting dashboard. Do not upload `.env`. Default mode needs no LLM key. Choose an always-on service for judging and review billing yourself.
+
+**Storage choice matters.** A persistent SQLite path preserves state over app restarts; an ephemeral filesystem does not. Render persistent disks also create automatic snapshots, which your app&#x27;s teardown cannot erase. Resolve the challenge&#x27;s retention requirement before enabling those backups, or use a single host whose storage/backups you control. The provided Render recipe deliberately does not attach a disk automatically and documents the resulting restart limitation.
+
+Docker/Compose recipes are also included; they were not built in the authoring environment because Docker was unavailable. Do not treat their presence as proof of a successful image build.
+
+## 10. Verify and submit the base URL
+
+After deployment, from your local terminal:
+
+```bash
+python -m scripts.preflight --url https://YOUR-SERVICE.example --submission
+```
+
+Replace the example hostname with your real public HTTPS URL. This read-only preflight verifies reachability, identity fields and HTTPS; it does not prove every behavior or private-judge quality. Exercise the full flow on a separate staging instance first.
+
+Before submitting, verify the real hosted app&#x27;s five endpoints; the metadata names you correctly; no studio/test tokens were exposed; the chosen retention/storage policy is acceptable; and your app stays awake. Clear your own synthetic test state **before** evaluation starts, not during it. Avoid deploys or manual test scripts while the judge is using the service.
+
+Submit the **base URL**, not `/studio`, `/docs`, or a ZIP URL, through the live challenge page. Attach/explain the one-page README when requested. Keep the service available until evaluation is complete and comply with teardown requests.
+
+## 11. Be ready to explain your work
+
+Read [ARCHITECTURE](docs/ARCHITECTURE.md) and follow a single request from `api.py` to `service.py`, `policy.py`, `strategies.py` and `conversation.py`. Understand why model-generated JSON is not factual proof, why opt-outs are separate from snapshots, and why the bot refuses to claim it booked or sent something.
+
+This was an AI-assisted build. Review and customize it, own the final decisions, and describe assistance honestly. The live page says applicants are solo and work will be verified; do not submit an opaque artifact you cannot explain.
+
+## Troubleshooting
+
+**No actions:** inspect `/debug/traces` with the admin token. Common reasons are expired trigger dates, missing consent, cooldown, STOP, a missing linked context, or no usable evidence. Do not “fix” this by removing safeguards.
+
+**409 context error:** a lower version cannot replace a newer snapshot. Push a higher version or use a separate local development database. Equal versions intentionally do not change data.
+
+**401 in studio:** admin token is missing/wrong. Restart after editing `.env`. Do not put this token in the public URL.
+
+**SQLite locked:** use one worker/replica and a local writable disk, not a shared network filesystem. Avoid concurrent maintenance or a second app sharing the same database.
+
+**Provider error:** default mode does not need a provider. With semantic mode enabled, verify that your selected model supports the configured Chat Completions JSON request; failures fall back to deterministic handling. A provider account subscription is not a guarantee of API credit.
+
+**Unexpected language:** English/Hindi/Hinglish are the implemented scope. Additional languages require explicit realization and regression tests, not a false “all Indian languages supported” claim.
+</pre></main></body></html>
